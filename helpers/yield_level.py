@@ -37,4 +37,4 @@ def get_yield_level_indicator_from_yield_score(score: int) -> str:
         return "★★★"
 
 
-print(get_yield_level_score([33] * 4, [1] * 4, 0))
+# print(get_yield_level_score([33] * 4, [1] * 4, 0))
