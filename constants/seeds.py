@@ -4,6 +4,7 @@ Seed information.
 Source: https://serenesforest.net/three-houses/monastery/greenhouse/
 """
 
+
 # MARK: - Keys
 SEED_NAME_KEY = "name"
 SEED_RANK_KEY = "rank"    ; """This is a hidden value used to calculate the final yield."""
