@@ -2,46 +2,46 @@
 Cultivation information.
 """
 
-
-# MARK: - Keys
-CULTIVATION_NAME_KEY = "name"
-CULTIVATION_COST_KEY = "cost"
-CULTIVATION_TIER_KEY = "tier"
+import enum
 
 
 # MARK: - Methods
-INFUSE_WITH_MAGIC = {
-    CULTIVATION_NAME_KEY: "Infuse with magic (0G)",
-    CULTIVATION_COST_KEY: 0,
-    CULTIVATION_TIER_KEY: 1,
-}
+class Method (enum.Enum):
+    INFUSE_WITH_MAGIC = 1
+    POUR_AIRMID_WATER = 2
+    PRUNE = 3
+    SCATTER_BONEMEAL = 4
+    USE_CALEDONIAN_SOIL = 5
+    SPREAD_PEGASUS_BLESSINGS = 6
 
-POUR_AIRMID_WATER = {
-    CULTIVATION_NAME_KEY: "Pour Airmid water (300G)",
-    CULTIVATION_COST_KEY: 300,
-    CULTIVATION_TIER_KEY: 2,
-}
+    def get_cost(self) -> int:
+        if (self == Method.INFUSE_WITH_MAGIC):
+            return 0
+        elif (self == Method.POUR_AIRMID_WATER):
+            return 300
+        elif (self == Method.PRUNE):
+            return 500
+        elif (self == Method.SCATTER_BONEMEAL):
+            return 1000
+        elif (self == Method.USE_CALEDONIAN_SOIL):
+            return 1500
+        elif (self == Method.SPREAD_PEGASUS_BLESSINGS):
+            return 2000
+        else:
+            raise ValueError(f"Unknown cultivation method {self} (value: {self.value}).")
 
-PRUNE = {
-    CULTIVATION_NAME_KEY: "Prune (500G)",
-    CULTIVATION_COST_KEY: 500,
-    CULTIVATION_TIER_KEY: 3,
-}
-
-SCATTER_BONEMEAL = {
-    CULTIVATION_NAME_KEY: "Scatter Bonemeal (1,000G)",
-    CULTIVATION_COST_KEY: 1000,
-    CULTIVATION_TIER_KEY: 4,
-}
-
-USE_CALEDONIAN_SOIL = {
-    CULTIVATION_NAME_KEY: "Use Caledonian soil (1,500G)",
-    CULTIVATION_COST_KEY: 1500,
-    CULTIVATION_TIER_KEY: 5,
-}
-
-SPREAD_PEGASUS_BLESSINGS = {
-    CULTIVATION_NAME_KEY: "Spread pegasus blessings (2,000G)",
-    CULTIVATION_COST_KEY: 2000,
-    CULTIVATION_TIER_KEY: 6,
-}
+    def get_name(self) -> str:
+        if (self == Method.INFUSE_WITH_MAGIC):
+            return "Infuse with magic (0G)"
+        elif (self == Method.POUR_AIRMID_WATER):
+            return "Pour Airmid water (300G)"
+        elif (self == Method.PRUNE):
+            return "Prune (500G)"
+        elif (self == Method.SCATTER_BONEMEAL):
+            return "Scatter Bonemeal (1,000G)"
+        elif (self == Method.USE_CALEDONIAN_SOIL):
+            return "Use Caledonian soil (1,500G)"
+        elif (self == Method.SPREAD_PEGASUS_BLESSINGS):
+            return "Spread pegasus blessings (2,000G)"
+        else:
+            raise ValueError(f"Unknown cultivation method {self} (value: {self.value}).")
