@@ -7,6 +7,7 @@ import enum
 
 # MARK: - Methods
 class Method (enum.Enum):
+    NONE = 0
     INFUSE_WITH_MAGIC = 1
     POUR_AIRMID_WATER = 2
     PRUNE = 3
@@ -15,7 +16,9 @@ class Method (enum.Enum):
     SPREAD_PEGASUS_BLESSINGS = 6
 
     def get_cost(self) -> int:
-        if (self == Method.INFUSE_WITH_MAGIC):
+        if (self == Method.NONE):
+            return 0
+        elif (self == Method.INFUSE_WITH_MAGIC):
             return 0
         elif (self == Method.POUR_AIRMID_WATER):
             return 300
@@ -31,7 +34,9 @@ class Method (enum.Enum):
             raise ValueError(f"Unknown cultivation method {self} (value: {self.value}).")
 
     def get_name(self) -> str:
-        if (self == Method.INFUSE_WITH_MAGIC):
+        if (self == Method.NONE):
+            return "No cultivation"
+        elif (self == Method.INFUSE_WITH_MAGIC):
             return "Infuse with magic (0G)"
         elif (self == Method.POUR_AIRMID_WATER):
             return "Pour Airmid water (300G)"

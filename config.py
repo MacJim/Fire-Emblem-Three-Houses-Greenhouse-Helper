@@ -33,16 +33,16 @@ MY_SEEDS = [
 (seed type, amount)
 """
 
-TARGET_YIELD_LEVEL = 5
+TARGET_YIELD_LEVEL = 4
 """
 Target yield level.
 
 Combinations with smaller yield levels are ignored.
 
-- 1: yield level ☆
-- 2: yield level ★
-- 3: yield level ★☆
-- 4: yield level ★★
-- 5: yield level ★★☆ (recommended)
-- 6: yield level ★★★
+- 0: yield level ☆
+- 1: yield level ★
+- 2: yield level ★☆
+- 3: yield level ★★
+- 4: yield level ★★☆ (recommended)
+- 5: yield level ★★★
 """
