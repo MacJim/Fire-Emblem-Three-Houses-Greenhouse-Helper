@@ -1,10 +1,10 @@
 import itertools
 import typing
 import multiprocessing
-from collections import defaultdict
+from collections import defaultdict, Counter
 
 from helpers.prof_level import get_maximum_seed_count, get_max_cultivation_tier
-from helpers.yield_level import get_base_yield_level_score, get_minimum_cultivation_tier, MAX_YIELD_LEVEL, YIELD_LEVEL_SCORE_THRESHOLDS
+from helpers.yield_level import get_base_yield_level_score, get_minimum_cultivation_tier, MAX_YIELD_LEVEL, YIELD_LEVEL_SCORE_THRESHOLDS, YIELD_LEVEL_INDICATORS
 from constants import seeds, cultivation
 import config
 
@@ -95,7 +95,14 @@ def main():
             feasible_combinations[yield_level] = sorted(feasible_combinations[yield_level], key=lambda x: x[1])
 
         # Print feasible combinations.
-        print(feasible_combinations)
+        # print(feasible_combinations)
+        for yield_level, combo in feasible_combinations.items():
+            # print(YIELD_LEVEL_INDICATORS[yield_level])
+            for seed_combination, min_cultivation_tier in combo:
+                seed_counts = Counter([seed[seeds.SEED_NAME_KEY] for seed in seed_combination])
+                # seed_counts = {name: count for name, count in seed_counts.items()}
+                seed_counts = dict(seed_counts)
+                print(f"{YIELD_LEVEL_INDICATORS[yield_level]} {seed_counts} {cultivation.Method(min_cultivation_tier).get_name()}")
 
 
 # MARK: - Main

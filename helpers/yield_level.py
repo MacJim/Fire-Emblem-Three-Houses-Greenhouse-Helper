@@ -41,7 +41,13 @@ def get_yield_level_score(ranks: typing.List[int], grades: typing.List[int], cul
     return get_base_yield_level_score(ranks, grades) + get_cultivation_yield_level_score(cultivation_tier)
 
 
-# MARK: - Yield level string
+# MARK: - Yield level thresholds
+MIN_YIELD_LEVEL = 0
+MAX_YIELD_LEVEL = 5
+YIELD_LEVEL_SCORE_THRESHOLDS = [0, 20, 40, 60, 80, 90]
+YIELD_LEVEL_INDICATORS = ["", "☆", "★", "★☆", "★★", "★★☆", "★★★"]
+
+
 def get_yield_level_indicator_from_yield_score(score: int) -> str:
     """
     Get a human-readable yield level indicator string.
@@ -49,15 +55,15 @@ def get_yield_level_indicator_from_yield_score(score: int) -> str:
     :param score:
     :return:
     """
-    if (score <= 20):
+    if (score <= YIELD_LEVEL_SCORE_THRESHOLDS[1]):
         return "☆"
-    elif (score <= 40):
+    elif (score <= YIELD_LEVEL_SCORE_THRESHOLDS[2]):
         return "★"
-    elif (score <= 60):
+    elif (score <= YIELD_LEVEL_SCORE_THRESHOLDS[3]):
         return "★☆"
-    elif (score <= 80):
+    elif (score <= YIELD_LEVEL_SCORE_THRESHOLDS[4]):
         return "★★"
-    elif (score <= 90):
+    elif (score <= YIELD_LEVEL_SCORE_THRESHOLDS[5]):
         return "★★☆"
     else:
         return "★★★"
