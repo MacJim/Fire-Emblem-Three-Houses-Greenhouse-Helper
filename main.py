@@ -10,6 +10,10 @@ import config
 
 
 # MARK: - Workers
+class WorkerDropItem (Exception):
+    pass
+
+
 def get_base_yield_score(seed_combinations: typing.List[typing.Tuple[typing.Dict[str, typing.Union[str, int]], int]]) -> int:
     ranks = [s[seeds.SEED_RANK_KEY] for s in seed_combinations]
     grades = [s[seeds.SEED_GRADE_KEY] for s in seed_combinations]
@@ -39,7 +43,10 @@ def worker(seed_combination: typing.List[typing.Tuple[typing.Dict[str, typing.Un
             # This target yield level can be achieved with a cultivation method.
             return_value[level] = min_cultivation_tier
 
-    return (seed_combination, return_value)
+    if (return_value):
+        return (seed_combination, return_value)
+    else:
+        raise WorkerDropItem
 
 
 # MARK: - Main
@@ -67,16 +74,12 @@ def main():
 
     def _worker_result_handler(result: typing.Tuple[typing.List[typing.Tuple[typing.Dict[str, typing.Union[str, int]], int]], typing.Dict[int, int]]):
         """
-        Handles the results of `worker`.
-
-        Adds the possible tuples
+        Handles the valid results (without exception) of `worker`.
 
         :return:
         """
-        if (result[1]):
-            seed_combination = result[0]
-            for level, cultivation_tier in result[1].items():
-                feasible_combinations[level].append((seed_combination, cultivation_tier))
+        for level, cultivation_tier in result[1].items():
+            feasible_combinations[level].append((result[0], cultivation_tier))
 
     with multiprocessing.Pool() as pool:
         for combination in seed_combinations:
