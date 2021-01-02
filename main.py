@@ -53,17 +53,6 @@ def worker(seed_combination: typing.List[typing.Tuple[typing.Dict[str, typing.Un
 def main():
     max_seed_count = get_maximum_seed_count(config.PROFESSOR_LEVEL)    # We always use the max amount of seeds.
 
-    # MARK: Get seed combinations.
-    available_seeds = []
-    for seed, count in config.MY_SEEDS:
-        if (count > max_seed_count):
-            count = max_seed_count
-
-        for _ in range(count):
-            available_seeds.append(seed)
-
-    seed_combinations = itertools.combinations(available_seeds, max_seed_count)
-
     # MARK: Get feasible combinations.
     max_cultivation_tier = get_max_cultivation_tier(config.PROFESSOR_LEVEL)
 
@@ -82,8 +71,22 @@ def main():
             feasible_combinations[level].append((result[0], cultivation_tier))
 
     with multiprocessing.Pool() as pool:
-        for combination in seed_combinations:
-            pool.apply_async(worker, (combination, config.TARGET_YIELD_LEVEL, max_cultivation_tier), callback=_worker_result_handler)
+        for seed_indices in itertools.combinations_with_replacement(range(len(config.MY_SEEDS)), max_seed_count):
+            indices_counter = Counter(seed_indices)
+
+            has_enough_seeds = True
+            for i, expected_count in indices_counter.items():
+                real_count = config.MY_SEEDS[i][1]
+                if (real_count < expected_count):
+                    # Not enough seeds for this list of seed indices.
+                    has_enough_seeds = False
+                    break
+
+            if (not has_enough_seeds):
+                continue
+
+            seed_combination = [config.MY_SEEDS[i][0] for i in seed_indices]
+            pool.apply_async(worker, (seed_combination, config.TARGET_YIELD_LEVEL, max_cultivation_tier), callback=_worker_result_handler)
 
         pool.close()
         pool.join()
