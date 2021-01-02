@@ -44,7 +44,7 @@ def get_yield_level_score(ranks: typing.List[int], grades: typing.List[int], cul
 # MARK: - Yield level thresholds
 MIN_YIELD_LEVEL = 0
 MAX_YIELD_LEVEL = 5
-YIELD_LEVEL_SCORE_THRESHOLDS = [0, 20, 40, 60, 80, 90]
+YIELD_LEVEL_SCORE_THRESHOLDS = [0, 21, 41, 61, 81, 91]
 YIELD_LEVEL_INDICATORS = ["☆", "★", "★☆", "★★", "★★☆", "★★★"]
 
 
