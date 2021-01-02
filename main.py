@@ -95,8 +95,10 @@ def main():
     if (not feasible_combinations):
         print("No feasible combinations found!")
     else:
-        # Sort the feasible combinations dict.
-        feasible_combinations = {yield_level: feasible_combinations[yield_level] for yield_level in sorted(feasible_combinations)}
+        # MARK: Sort the feasible combinations dict.
+        # Sort by yield level: max yield level first.
+        feasible_combinations = {yield_level: feasible_combinations[yield_level] for yield_level in sorted(feasible_combinations, reverse=True)}
+        # Sort by required cultivation tier: cheaper cultivation tier first.
         for yield_level in feasible_combinations:
             feasible_combinations[yield_level] = sorted(feasible_combinations[yield_level], key=lambda x: x[1])
 
@@ -108,7 +110,14 @@ def main():
                 seed_counts = Counter([seed[seeds.SEED_NAME_KEY] for seed in seed_combination])
                 # seed_counts = {name: count for name, count in seed_counts.items()}
                 seed_counts = dict(seed_counts)
-                print(f"{YIELD_LEVEL_INDICATORS[yield_level]} {seed_counts} {cultivation.Method(min_cultivation_tier).get_name()}")
+
+                min_graded_seed = min(seed_combination, key=lambda x: x[seeds.SEED_GRADE_KEY])
+                prof_exp = min_graded_seed[seeds.SEED_GRADE_KEY] * 100
+
+                print(f"{YIELD_LEVEL_INDICATORS[yield_level]} Prof exp: {prof_exp} {seed_counts} {cultivation.Method(min_cultivation_tier).get_name()}")
+
+            if (combo):
+                print()    # Separator between yield levels.
 
 
 # MARK: - Main
