@@ -45,7 +45,7 @@ NORTHERN_FODLAN_SEEDS = {
 MORFIS_PLUM_SEEDS = {
     SEED_NAME_KEY: "Morfis-Plum Seeds",
     SEED_RANK_KEY: 18,
-    SEED_GRADE_KEY: 0,    # TODO:
+    SEED_GRADE_KEY: 4,
 }
 
 SOUTHERN_FODLAN_SEEDS = {
@@ -69,7 +69,7 @@ NORDSALAT_SEEDS = {
 BOA_FRUIT_SEEDS = {
     SEED_NAME_KEY: "Boa-Fruit Seeds",
     SEED_RANK_KEY: 31,
-    SEED_GRADE_KEY: 0,    # TODO:
+    SEED_GRADE_KEY: 5,
 }
 
 ALBINEAN_SEEDS = {
@@ -87,7 +87,7 @@ EASTERN_FODLAN_SEEDS = {
 ANGELICA_SEEDS = {
     SEED_NAME_KEY: "Angelica Seeds",
     SEED_RANK_KEY: 34,
-    SEED_GRADE_KEY: 0,    # TODO:
+    SEED_GRADE_KEY: 4,    # TODO: Seems to be 4, don't have any screenshots proving this
 }
 
 MIXED_FRUIT_SEEDS = {
