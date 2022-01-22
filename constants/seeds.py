@@ -7,8 +7,10 @@ Source: https://serenesforest.net/three-houses/monastery/greenhouse/
 
 # MARK: - Keys
 SEED_NAME_KEY = "name"
-SEED_RANK_KEY = "rank"    ; """This is a hidden value used to calculate the final yield."""
-SEED_GRADE_KEY = "grade"    ; """This is the visible \"star\" grade in the plant menu."""
+SEED_RANK_KEY = "rank"
+"""This is a hidden value used to calculate the final yield."""
+SEED_GRADE_KEY = "grade"
+"""This is the visible \"star\" grade in the plant menu."""
 
 
 # MARK: - Seeds
@@ -87,7 +89,7 @@ EASTERN_FODLAN_SEEDS = {
 ANGELICA_SEEDS = {
     SEED_NAME_KEY: "Angelica Seeds",
     SEED_RANK_KEY: 34,
-    SEED_GRADE_KEY: 4,    # TODO: Seems to be 4, don't have any screenshots proving this
+    SEED_GRADE_KEY: 4,  # TODO: Seems to be 4, don't have any screenshots proving this
 }
 
 MIXED_FRUIT_SEEDS = {

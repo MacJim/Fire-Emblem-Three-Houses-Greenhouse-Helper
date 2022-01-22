@@ -22,7 +22,7 @@ def get_base_yield_level_score(ranks: typing.List[int], grades: typing.List[int]
 
 
 def get_minimum_cultivation_tier(current_score: int, target_score: int) -> int:
-    if (current_score >= target_score):
+    if current_score >= target_score:
         return 0
 
     deficit = target_score - current_score
@@ -55,15 +55,15 @@ def get_yield_level_indicator_from_yield_score(score: int) -> str:
     :param score:
     :return:
     """
-    if (score <= YIELD_LEVEL_SCORE_THRESHOLDS[1]):
+    if score <= YIELD_LEVEL_SCORE_THRESHOLDS[1]:
         return "☆"
-    elif (score <= YIELD_LEVEL_SCORE_THRESHOLDS[2]):
+    elif score <= YIELD_LEVEL_SCORE_THRESHOLDS[2]:
         return "★"
-    elif (score <= YIELD_LEVEL_SCORE_THRESHOLDS[3]):
+    elif score <= YIELD_LEVEL_SCORE_THRESHOLDS[3]:
         return "★☆"
-    elif (score <= YIELD_LEVEL_SCORE_THRESHOLDS[4]):
+    elif score <= YIELD_LEVEL_SCORE_THRESHOLDS[4]:
         return "★★"
-    elif (score <= YIELD_LEVEL_SCORE_THRESHOLDS[5]):
+    elif score <= YIELD_LEVEL_SCORE_THRESHOLDS[5]:
         return "★★☆"
     else:
         return "★★★"
