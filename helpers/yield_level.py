@@ -28,6 +28,12 @@ def get_minimum_cultivation_tier(current_score: int, target_score: int) -> int:
     deficit = target_score - current_score
     cultivation_tier = math.ceil(deficit / 2 - 4)
 
+    if cultivation_tier < 0:
+        # TODO: Do we get cultivation points without cultivation?
+        # Serenes forest only mentions: `cultivation_score = (cultivation_tier + 4) * 2`
+        # It doesn't say if `cultivation_tier` can be 0
+        cultivation_tier = 0
+
     return cultivation_tier
 
 
